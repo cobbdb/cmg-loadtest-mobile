@@ -1,0 +1,14 @@
+{
+  "name": "cmg-ads-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node test.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "webpagetest": "^0.3.3"
+  }
+}
