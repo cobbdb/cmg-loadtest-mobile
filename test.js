@@ -13,7 +13,8 @@ global.setInterval(function () {
     wpt.runTest('http://www.atlantacmgsite.com', {
         runs: concurrency
     }, function (err, data) {
-        var msg = global.JSON.stringify(err || data) + '\n\n',
+        var now = new Date(),
+            msg = '\t' + now + '\n' + global.JSON.stringify(err || data) + '\n\n',
             newLog = (i % (keys.length * logRetention)) === 0;
         if (newLog) {
             fs.writeFile('results.log', msg, function (err) {});
