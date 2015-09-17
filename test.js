@@ -14,7 +14,7 @@ global.setInterval(function () {
         runs: concurrency
     }, function (err, data) {
         var now = new Date(),
-            msg = '\t' + now + '\n' + global.JSON.stringify(err || data) + '\n\n',
+            msg = '\n\t' + now + '\n' + global.JSON.stringify(err || data) + '\n',
             newLog = (i % (keys.length * logRetention)) === 0;
         if (newLog) {
             fs.writeFile('results.log', msg, function (err) {});
