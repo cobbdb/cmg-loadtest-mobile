@@ -10,7 +10,7 @@ var fs = require('fs'),
 
 global.setInterval(function () {
     var wpt = new WebPageTest('www.webpagetest.org', keys[i]);
-    wpt.runTest('http://www.atlantacmgsite.com', {
+    wpt.runTest('http://m.atlantacmgsite.com', {
         runs: concurrency
     }, function (err, data) {
         var now = new Date(),
