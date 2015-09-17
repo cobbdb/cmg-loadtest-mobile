@@ -1,7 +1,7 @@
 var fs = require('fs'),
     keys = require('./keys.json').keys,
     WebPageTest = require('webpagetest'),
-    concurrency = 9,
+    concurrency = 1,
     runsPerDay = 195 * keys.length / concurrency,
     msPerDay = 24 * 60 * 60 * 1000,
     msPerRun = msPerDay / runsPerDay,
@@ -12,15 +12,12 @@ global.setInterval(function () {
     wpt.runTest('http://www.atlantacmgsite.com', {
         runs: concurrency
     }, function (err, data) {
-        if (err) {
-            return console.log('>!!! WPT ERROR', err);
+        var msg = global.JSON.stringify(err || data) + '\n\n';
+        if (i === 0) {
+            fs.writeFile('results.log', msg, function (err) {});
+        } else {
+            fs.appendFile('results.log', msg, function (err) {});
         }
-        fs.writeFile('results.log', global.JSON.stringify(data), function (err) {
-            if (err) {
-                return console.log('>!!! LOG ERROR', err);
-            }
-            console.log('> Started test:\n\t\t', data);
-        });
     });
 
     i += 1;
